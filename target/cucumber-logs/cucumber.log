@@ -1,0 +1,8 @@
+[[32mINFO [m] 2022-02-28 18:29:21,576 ReqresAPITests.checkUserCreationWorks() - Registration was successful
+[[32mINFO [m] 2022-02-28 18:29:21,876 ReqresAPITests.checkUserCreationWorks() - Login was successful
+[[32mINFO [m] 2022-02-28 18:29:22,246 ReqresAPITests.checkUserCanGetUserDataAndUpdate() - User can see more than 1 account
+[[32mINFO [m] 2022-02-28 18:29:22,678 ReqresAPITests.checkUserCanGetUserDataAndUpdate() - First user was updated successfully
+[[32mINFO [m] 2022-02-28 18:29:23,397 ReqresAPITests.checkUserCanDeleteAnotherUser() - Deletion command was successful
+[[32mINFO [m] 2022-02-28 18:29:23,533 ReqresAPITests.checkUserCanDeleteAnotherUser() - Database was not actually altered
+[[32mINFO [m] 2022-02-28 18:29:23,880 ReqresAPITests.checkFailedUserCreationCannotLogin() - Note: Only defined users succeed registration was returned
+[[32mINFO [m] 2022-02-28 18:29:24,217 ReqresAPITests.checkFailedUserCreationCannotLogin() - user not found was returned

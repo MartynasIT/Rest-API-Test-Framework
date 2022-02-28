@@ -1,0 +1,16 @@
+<component name="libraryTable">
+  <library name="selenium-support-3.4.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/Downloads/jar_files/selenium-support-3.4.0.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/commons-io-2.11.0-bin/commons-io-2.11.0/commons-io-2.11.0.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/commons-io-2.11.0-bin/commons-io-2.11.0/commons-io-2.11.0-tests.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/Downloads/commons-io-2.11.0-bin/commons-io-2.11.0/commons-io-2.11.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/Downloads/commons-io-2.11.0-bin/commons-io-2.11.0/commons-io-2.11.0-test-sources.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/commons-io-2.11.0-bin/commons-io-2.11.0/commons-io-2.11.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
