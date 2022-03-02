@@ -1,8 +1,11 @@
 package Project;
 
+import com.framework.utils.Generators;
+import com.framework.utils.JsonReader;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.hamcrest.Matchers;
+import org.json.simple.JSONObject;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.apache.logging.log4j.Logger;
@@ -10,39 +13,40 @@ import org.apache.logging.log4j.LogManager;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.Random;
-
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
 
 
-public class ReqresAPITests extends baseReqres {
-    private @Getter @Setter String token;
+public class ReqresAPITests extends BaseTest {
+    private
+    @Getter @Setter String token;
     private static Logger logger = LogManager.getLogger(ReqresAPITests.class);
+    Generators generators;
 
 
     public void login() {
         Response response = given().header("Content-Type", "application/json").
-                body(json.get("Login").toString()).when().post(ENDPOINT_LOGIN);
+                body(jsonReader.getValue("Login")).when().post(ENDPOINT_LOGIN);
         setToken(response.jsonPath().getString("token"));
     }
 
     @Test
     public void checkUserCreationWorks() {
+        String loginDetails = jsonReader.returnJsonObjectAsString();
         var response = given().header("Content-Type", "application/json").
-                body(json.toJSONString()).when().post(ENDPOINT_REGISTER).then();
+                body(loginDetails).when().post(ENDPOINT_REGISTER).then();
         response.assertThat().statusCode(200).body("token", notNullValue());
         logger.info("Registration was successful");
 
         response = given().header("Content-Type", "application/json").
-                body(json.toJSONString()).when().post(ENDPOINT_LOGIN).then();
+                body(loginDetails).when().post(ENDPOINT_LOGIN).then();
         response.assertThat().statusCode(200).body("token", Matchers.notNullValue());
         logger.info("Login was successful");
     }
 
     @Test
     public void checkUserCanGetUserDataAndUpdate() {
-        Generators generator = new Generators();
+        generators = new Generators();
         login();
         var response = given().auth().oauth2(token).get(ENDPOINT_USERS).then();
         response.assertThat().statusCode(200).body("total", Matchers.not(lessThan(2)));
@@ -50,8 +54,8 @@ public class ReqresAPITests extends baseReqres {
 
         var responseFirstAccount = given().auth().oauth2(token).get(ENDPOINT_USERS + "/1").then().
                 contentType(ContentType.JSON).extract().response();
-        json = new JsonWorker(responseFirstAccount.getBody().asString()).parseAndReturnJsonFromString();
-        String toAdd = generator.generateRandomString();
+        JSONObject json = new JsonReader(responseFirstAccount.getBody().asString()).getJsonObject();
+        String toAdd = generators.generateRandomString();
         json.put("Edited", toAdd);
 
         response = given().auth().oauth2(getToken()).and().given().header("Content-Type", "application/json").
@@ -81,31 +85,17 @@ public class ReqresAPITests extends baseReqres {
 
     @Test
     public void checkFailedUserCreationCannotLogin() {
+        String loginDetails = jsonReader.returnJsonObjectAsString();
         var response = given().header("Content-Type", "application/json").
-                body(json.toJSONString()).when().post(ENDPOINT_REGISTER).then();
+                body(loginDetails).when().post(ENDPOINT_REGISTER).then();
         response.assertThat().statusCode(400).body("error", Matchers.equalTo(
                 "Note: Only defined users succeed registration"));
         logger.info("Note: Only defined users succeed registration was returned");
 
         response = given().header("Content-Type", "application/json").
-                body(json.toJSONString()).when().post(ENDPOINT_LOGIN).then();
+                body(loginDetails).when().post(ENDPOINT_LOGIN).then();
         response.assertThat().statusCode(400).body("error", Matchers.equalTo("user not found"));
         logger.info("user not found was returned");
 
-    }
-
-
-    private class Generators {
-        private String generateRandomString() {
-            String SALTCHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
-            StringBuilder salt = new StringBuilder();
-            Random rnd = new Random();
-            while (salt.length() < 18) {
-                int index = (int) (rnd.nextFloat() * SALTCHARS.length());
-                salt.append(SALTCHARS.charAt(index));
-            }
-            String saltStr = salt.toString();
-            return saltStr;
-        }
     }
 }
