@@ -1,5 +1,6 @@
-package Project;
+package Project.TestCases;
 
+import Project.Base.BaseTest;
 import com.framework.utils.Generators;
 import com.framework.utils.JsonReader;
 import io.restassured.http.ContentType;

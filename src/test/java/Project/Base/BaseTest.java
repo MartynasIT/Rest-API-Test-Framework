@@ -1,4 +1,4 @@
-package Project;
+package Project.Base;
 
 import com.framework.utils.JsonReader;
 import org.testng.annotations.BeforeTest;
