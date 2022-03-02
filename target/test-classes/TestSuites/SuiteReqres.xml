@@ -4,7 +4,7 @@
     <test name="User gets created and can login with created credentials.">
         <parameter name="testDataPath" value="src/test/resources/TestData/registerData.json"/>
         <classes>
-            <class name="Project.TestCases.ReqresAPITests">
+            <class name="com.automation.project.scripts.ReqresAPITests">
                 <methods>
                     <include name="checkUserCreationWorks"/>
                 </methods>
@@ -15,7 +15,7 @@
     <test name="Logged-in user can view all accounts and then update one of them.">
         <parameter name="testDataPath" value="src/test/resources/TestData/loginData.json"/>
         <classes>
-            <class name="Project.TestCases.ReqresAPITests">
+            <class name="com.automation.project.scripts.ReqresAPITests">
                 <methods>
                     <include name="checkUserCanGetUserDataAndUpdate"/>
                 </methods>
@@ -26,7 +26,7 @@
     <test name="Logged-in user can try to delete one of accounts and then check that he did not actually delete it.">
         <parameter name="testDataPath" value="src/test/resources/TestData/loginData.json"/>
         <classes>
-            <class name="Project.TestCases.ReqresAPITests">
+            <class name="com.automation.project.scripts.ReqresAPITests">
                 <methods>
                     <include name="checkUserCanDeleteAnotherUser"/>
                 </methods>
@@ -37,7 +37,7 @@
     <test name="User tries to create account when he can’t and then tries to login with that account without success.">
         <parameter name="testDataPath" value="src/test/resources/TestData/registerBadData.json"/>
         <classes>
-            <class name="Project.TestCases.ReqresAPITests">
+            <class name="com.automation.project.scripts.ReqresAPITests">
                 <methods>
                     <include name="checkFailedUserCreationCannotLogin"/>
                 </methods>

@@ -1,6 +1,6 @@
-package Project.TestCases;
+package com.automation.project.scripts;
 
-import Project.Base.BaseTest;
+import com.automation.project.base.BaseTest;
 import com.framework.utils.Generators;
 import com.framework.utils.JsonReader;
 import io.restassured.http.ContentType;
