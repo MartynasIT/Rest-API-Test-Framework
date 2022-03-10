@@ -73,5 +73,5 @@ Rest-assured is used to perform API calls.
 To make pipeline work we need to create Jenkins file in the project to write configuration:
 Provide which agent to use, steps and stages. In steps we provide maven commands to run TestNG suites. After that install MultiBranch Action Triggers plugin via Jenkins user interface. Then Multibranch Pipeline can be made where trigger actions can be specified and all Git credentials. To run tests after every push to master or any other branch a webhook trigger needs to be made (token) in the pipeline. That token later can be added to Git integrations (found in settings) where we can specify when Git is going to trigger a request to pipeline with that token. Push event needs to be selected to trigger pipeline after every push to the branch. 
 ![image](https://user-images.githubusercontent.com/25178870/157652166-0cb0cfac-e06c-4252-96ad-073e42d88a9d.png)
-![image](https://user-images.githubusercontent.com/25178870/157652186-84f9bf2e-0a29-4b52-a031-c36415ddfb6c.png)
+![image](https://user-images.githubusercontent.com/25178870/157652306-c42ebf7e-c390-48f5-b886-35b5ca3f53fe.png)
 
