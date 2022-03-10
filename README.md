@@ -1,4 +1,4 @@
-# Rest-API-Test-Framework
+# How To Run
  
 1. To run suite TestRunner configuration can be used at the top next to hammer (InteliJ). 
 2. Another way is to use cmd command mvn -Dsurefire.suiteXmlFiles=src/test/resources/TestSuites/SuiteReqres.xml test
